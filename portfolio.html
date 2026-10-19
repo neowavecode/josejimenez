@@ -263,6 +263,19 @@
             </div>
           </article>
 
+          <!-- Card especial: hub neowavecode con todas las apps -->
+          <a class="hubcard reveal" href="https://neowavecode.github.io/" target="_blank" rel="noopener" aria-label="neowavecode — explora todas mis apps juntas">
+            <canvas class="hubcard__fx" aria-hidden="true"></canvas>
+            <span class="hubcard__glow" aria-hidden="true"></span>
+            <div class="hubcard__inner">
+              <span class="hubcard__icon" aria-hidden="true"><svg viewBox="0 -960 960 960" fill="currentColor"><path d="m353-480 59-59q12-12 12-28t-12-28q-12-12-28.5-12T355-595l-87 87q-6 6-8.5 13t-2.5 15q0 8 2.5 15t8.5 13l87 87q12 12 28.5 12t28.5-12q12-12 12-28t-12-28l-59-59Zm254 0-59 59q-12 12-12 28t12 28q12 12 28.5 12t28.5-12l87-87q6-6 8.5-13t2.5-15q0-8-2.5-15t-8.5-13l-87-87q-6-6-13.5-9t-15-3q-7.5 0-15 3t-13.5 9q-12 12-12 28t12 28l59 59ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/></svg></span>
+              <p class="hubcard__kicker">neowavecode</p>
+              <h3 class="hubcard__title">Todas mis apps, en un mismo lugar</h3>
+              <p class="hubcard__desc">SecHome, Bubble Speed, VR Mirror, RosterFlow, AlertSOS y YourWave reunidas en <strong>neowavecode</strong> — el hogar de todas mis aplicaciones.</p>
+              <span class="hubcard__cta">Explorar neowavecode <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </div>
+          </a>
+
         </div>
       </div>
     </section>
@@ -296,5 +309,37 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+
+  <!-- Fondo de partículas conectadas de neowavecode, acotado al card del hub -->
+  <script>
+  (function(){
+    var card=document.querySelector('.hubcard'), cv=document.querySelector('.hubcard__fx');
+    if(!card||!cv) return;
+    var ctx=cv.getContext('2d'), W, H, pts;
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var O={base:72, speed:0.07, maxDist:130, lineA:0.16, dotR:2, dotA:0.5, rgb:'34,211,238'};
+    function init(){
+      var r=card.getBoundingClientRect();
+      W=cv.width=Math.max(1,Math.round(r.width)); H=cv.height=Math.max(1,Math.round(r.height));
+      var n=Math.max(16, Math.round(O.base*(W*H)/(1366*768)));
+      pts=[]; for(var i=0;i<n;i++) pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*O.speed*2,vy:(Math.random()-.5)*O.speed*2});
+    }
+    function frame(){
+      ctx.clearRect(0,0,W,H);
+      var i,j;
+      for(i=0;i<pts.length;i++){var p=pts[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;}
+      for(i=0;i<pts.length;i++)for(j=i+1;j<pts.length;j++){
+        var a=pts[i],b=pts[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<O.maxDist){ctx.strokeStyle='rgba('+O.rgb+','+((1-d/O.maxDist)*O.lineA).toFixed(3)+')';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}
+      }
+      ctx.globalAlpha=O.dotA; ctx.fillStyle='rgb('+O.rgb+')';
+      for(i=0;i<pts.length;i++){ctx.beginPath();ctx.arc(pts[i].x,pts[i].y,O.dotR,0,6.283);ctx.fill();}
+      ctx.globalAlpha=1;
+      if(!reduce) requestAnimationFrame(frame);
+    }
+    init(); frame();
+    var t; addEventListener('resize',function(){clearTimeout(t);t=setTimeout(function(){init();if(reduce)frame();},200);});
+  })();
+  </script>
 </body>
 </html>
