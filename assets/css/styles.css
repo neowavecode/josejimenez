@@ -344,8 +344,11 @@ ul { list-style: none; padding: 0; }
 
 /* Apps */
 .apps { display: grid; gap: 22px; }
-.app { display: grid; grid-template-columns: auto 1fr; gap: clamp(18px, 3vw, 32px); align-items: center; background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(20px, 3vw, 32px); transition: border-color .25s, transform .25s, box-shadow .25s; }
-.app:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: var(--shadow); }
+.app { position: relative; overflow: hidden; display: grid; grid-template-columns: auto 1fr; gap: clamp(18px, 3vw, 32px); align-items: center; background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(20px, 3vw, 32px); transition: border-color .25s, transform .25s, box-shadow .25s; --c: var(--primary); }
+.app > * { position: relative; z-index: 1; }
+.app::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0; transition: opacity .25s; background: radial-gradient(520px 200px at 15% -10%, color-mix(in srgb, var(--c) 18%, transparent), transparent 72%); }
+.app:hover { transform: translateY(-5px); border-color: color-mix(in srgb, var(--c) 60%, var(--line-strong)); box-shadow: 0 24px 48px -24px color-mix(in srgb, var(--c) 55%, transparent); }
+.app:hover::before { opacity: 1; }
 .app__logo { width: clamp(84px, 12vw, 120px); aspect-ratio: 1; border-radius: 22px; border: 1px solid var(--line); background: var(--bg-elev-2); object-fit: cover; }
 .app__name { font-family: var(--font-head); font-size: 1.5rem; font-weight: 700; }
 .app__kicker { font-family: var(--font-mono); font-size: .74rem; color: var(--primary); text-transform: uppercase; letter-spacing: .06em; }
