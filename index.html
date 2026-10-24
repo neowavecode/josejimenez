@@ -50,8 +50,15 @@
   <header class="nav">
     <div class="container nav__inner">
       <a class="brand" href="#top" aria-label="Inicio — José Jiménez">
-        <span class="brand__dot" aria-hidden="true"></span>
-        <span class="brand__name">jose<b>.</b>jimenez</span>
+        <span class="brand__logo" aria-hidden="true">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="brandg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#34d399"/></linearGradient></defs>
+            <rect x="12" y="15" width="40" height="34" rx="6" fill="none" stroke="url(#brandg)" stroke-width="3"/>
+            <line x1="12" y1="24" x2="52" y2="24" stroke="url(#brandg)" stroke-width="3"/>
+            <path d="M20 33l6 5-6 5" fill="none" stroke="url(#brandg)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand__name">José Jiménez</span>
       </a>
       <nav class="nav__links" aria-label="Navegación principal">
         <a class="nav__link" href="#sobre-mi">Sobre mí</a>
