@@ -437,7 +437,7 @@ ul { list-style: none; padding: 0; }
 }
 .badge-tile__frame {
   display: grid; place-items: center;
-  width: 150px; height: 150px; padding: 18px; border-radius: 24px;
+  width: 150px; height: 150px; padding: 12px; border-radius: 24px;
   background: linear-gradient(158deg, #ffffff, #e9eef5);
   border: 1px solid var(--line-strong);
   box-shadow: 0 16px 32px -20px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.65);
@@ -457,5 +457,5 @@ ul { list-style: none; padding: 0; }
 }
 @media (max-width: 520px) {
   .badge-tile, .badge-tile__frame { width: 132px; }
-  .badge-tile__frame { height: 132px; padding: 15px; border-radius: 20px; }
+  .badge-tile__frame { height: 132px; padding: 10px; border-radius: 20px; }
 }
