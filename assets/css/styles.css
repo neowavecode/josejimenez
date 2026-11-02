@@ -451,6 +451,7 @@ ul { list-style: none; padding: 0; }
   transform: translateY(-6px); border-color: var(--primary);
   box-shadow: 0 24px 46px -16px var(--glow), inset 0 1px 0 rgba(255,255,255,.75);
 }
+.badge-tile--lg .badge-tile__frame { padding: 6px; }
 .badge-tile__name {
   font-family: var(--font-mono); font-size: .76rem; color: var(--text-dim);
   text-align: center; line-height: 1.35; max-width: 160px;
@@ -458,4 +459,5 @@ ul { list-style: none; padding: 0; }
 @media (max-width: 520px) {
   .badge-tile, .badge-tile__frame { width: 132px; }
   .badge-tile__frame { height: 132px; padding: 10px; border-radius: 20px; }
+  .badge-tile--lg .badge-tile__frame { padding: 5px; }
 }
